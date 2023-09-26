@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Todos from "./components/Todos";
+import AddTodo from "./components/AddTodo";
+import Theme from "./components/Theme";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { applyTheme } from "./applyTheme";
 
 function App() {
+  const theme = useSelector((state) => state.themeReducer.theme);
+
+  useEffect(() => {
+    applyTheme(theme);
+  }, [theme]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AddTodo />
+      <Todos />
+      <Theme />
     </div>
   );
 }
